@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% load static %} 
+<html lang="en" style="font-size: 16px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Excel</title>
+    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" media="screen">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to right, rgba(76, 185, 72, 0.75), rgba(17, 165, 202, 0.75)); /* 75% opacity */
+            color: #ffffff;
+        }
+
+        /* Form Container */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Adjust for full height */
+        }
+
+        .form-box {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border: 3px solid black;
+            background-color: #ffffff; /* White background for the form */
+            color: black; /* Black text for the form */
+        }
+
+        .form-box h2 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .form-box input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid black;
+            border-radius: 12px;
+        }
+
+        .form-box input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to right, rgba(76, 185, 72, 0.75), rgba(17, 165, 202, 0.75));
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 12px;
+            color: black;
+        }
+        .overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* 70% black background */
+            z-index: 999; /* Ensure it is below the popup */
+        }
+        
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000; /* Ensure it is above the overlay */
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+        .popup h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: black; /* Black text color for visibility */
+        }
+        
+        .popup button {
+            width: 75px;
+            height: 35px;
+            background: linear-gradient(to right, rgba(76, 185, 72, 0.75), rgba(17, 165, 202, 0.75));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 12px;
+        }
+        
+        .popup button:hover {
+            background: #45a049;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Form Section -->
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Upload Excel File</h2>
+            <form method="post" action="" enctype="multipart/form-data" onsubmit="showPopup(event)">
+                {% csrf_token %}
+                <input type="file" name="excel_file" accept=".xlsx, .xls" required>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+    </div>
+
+<!-- Popup Section -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="uploadPopup">
+        <h2>File Uploaded Successfully!</h2>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+
+    <script>
+        function showPopup(event) {
+            event.preventDefault(); // Prevent default form submission
+        
+            // Simulate form submission and show popup
+            const form = event.target;
+            const formData = new FormData(form);
+        
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('uploadPopup').style.display = 'block';
+                }
+            });
+        }
+        
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('uploadPopup').style.display = 'none';
+            window.location.href = "/"; // Redirect to home page
+        }
+        
+    </script>
+</body>
+</html>

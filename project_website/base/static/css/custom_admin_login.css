@@ -1,0 +1,56 @@
+/* static/css/custom_admin_login.css */
+
+/* General Login Page Stylings */
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Apply Comic Sans font */
+    background: linear-gradient(to right, rgba(76, 185, 72, 0.75), rgba(17, 165, 202, 0.75)); /* Gradient background */
+    color: #ffffff;
+}
+
+/* Center container with card styles */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Custom Card Styles */
+.card {
+    width: 300px; /* Adjust width as needed */
+    background: rgba(255, 255, 255, 0.1); /* Make background transparent */
+    border: 3px solid rgba(0, 0, 0, 0.5); /* Semi-transparent black border */
+    border-radius: 12px; /* Set border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25); /* Lighter shadow for depth */
+}
+
+/* Form Header Styling */
+.card-header {
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent header */
+    color: #46a2d9; /* Header text color */
+    text-align: center; /* Center align text */
+}
+
+/* Form Element Styling */
+.form-control {
+    width: 90%; /* Adjust width for form control */
+}
+.form-control, .btn {
+    margin-bottom: 15px; /* Spacing between elements */
+}
+
+/* Custom Button Styles */
+.btn-primary {
+    height: 42px; /* Set button height */
+    width: 100%; /* Full width button */
+    background: linear-gradient(to right, rgba(76, 185, 72, 0.75), rgba(17, 165, 202, 0.75)); /* Gradient background */
+    color: white; /* Set button text color */
+    font-weight: bold; /* Make button text bold */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, rgba(76, 185, 72, 1), rgba(17, 165, 202, 1)); /* Darken gradient on hover */
+}

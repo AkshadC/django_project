@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+
+{% load i18n %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">My Admin Site</a></h1>
+{% endblock %}
+
+{% block usertools %}
+<div id="user-tools">
+    {% if user.is_active and site_url %}
+        <a href="{{ site_url }}" class="site-link">{% trans 'View site' %}</a>
+    {% endif %}
+</div>
+{% endblock %}
